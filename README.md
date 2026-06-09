@@ -2,7 +2,7 @@
 
 A Nextcloud app for maintaining a GDPR Article 30 record of processing activities — track your data processing agreements (DPAs) and subprocessors directly inside your own Nextcloud, on your own infrastructure.
 
-<!-- Add a screenshot once available: ![DPA Tracker](img/screenshot.png) -->
+![DPA Tracker — Art. 30 record of processing activities](img/screenshot.png)
 
 ## Why
 
