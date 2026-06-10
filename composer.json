@@ -1,10 +1,6 @@
 {
 	"name": "nextcloud/dpatracker",
-	"description": "<![CDATA[DPA Tracker helps organizations document and manage their data processing agreements (DPAs) and subprocessors directly within Nextcloud, in line with GDPR Article 30.
-
-For each subprocessor you record the purpose of processing, the categories of personal data involved, the provider's location, and a CLOUD Act risk indicator showing whether the provider has a US parent company. DPA documents can be attached, review dates tracked, and an audit-ready record of processing activities exported.
-
-Because everything runs inside your own Nextcloud instance, your compliance data never leaves your infrastructure — no third-party SaaS, no external cloud. Designed for SMEs and public-sector organizations that need GDPR and NIS-2 documentation on sovereign infrastructure.]]>",
+	"description": "DPA Tracker helps organizations document and manage their data processing agreements and subprocessors within Nextcloud, in line with GDPR Article 30.",
 	"license": "AGPL-3.0-or-later",
 	"authors": [
 		{
