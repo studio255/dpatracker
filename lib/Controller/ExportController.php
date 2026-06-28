@@ -13,6 +13,7 @@ use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\Attribute\OpenAPI;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
+use OCP\IURLGenerator;
 use OCP\IUserSession;
 
 /** @psalm-suppress UnusedClass */
@@ -21,6 +22,7 @@ class ExportController extends Controller {
 		IRequest $request,
 		private SubprocessorService $service,
 		private IUserSession $userSession,
+		private IURLGenerator $urlGenerator,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -40,6 +42,7 @@ class ExportController extends Controller {
 				'subprocessors' => $subprocessors,
 				'exportDate' => date('d.m.Y'),
 				'userId' => $userId,
+				'scriptUrl' => $this->urlGenerator->linkTo('dpatracker', 'js/dpatracker-export.js'),
 			],
 			TemplateResponse::RENDER_AS_BLANK,
 		);

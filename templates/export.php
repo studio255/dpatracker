@@ -224,8 +224,6 @@ tbody td {
 	</div>
 </div>
 
-<script>
-document.getElementById('btn-print')?.addEventListener('click', function() { window.print(); });
-</script>
+<?php emit_script_tag($_['scriptUrl']); ?>
 </body>
 </html>
