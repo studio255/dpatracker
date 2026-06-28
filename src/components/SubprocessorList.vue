@@ -143,6 +143,6 @@ const emit = defineEmits<{
 }
 
 .deleteAction {
-	color: var(--color-error) !important;
+	color: var(--color-error);
 }
 </style>

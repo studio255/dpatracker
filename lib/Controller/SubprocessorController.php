@@ -16,6 +16,9 @@ use OCP\AppFramework\OCSController;
 use OCP\IRequest;
 use OCP\IUserSession;
 
+/**
+ * @psalm-suppress UnusedClass
+ */
 class SubprocessorController extends OCSController {
 	public function __construct(
 		IRequest $request,
@@ -29,15 +32,29 @@ class SubprocessorController extends OCSController {
 		return $this->userSession->getUser()?->getUID() ?? '';
 	}
 
-	/** @return DataResponse<Http::STATUS_OK, list<array<string, mixed>>, array{}> */
+	/**
+	 * List all subprocessors for the current user
+	 *
+	 * @return DataResponse<Http::STATUS_OK, list<array<string, mixed>>, array{}>
+	 *
+	 * 200: Subprocessors returned
+	 */
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/subprocessors')]
 	public function index(): DataResponse {
 		$entities = $this->service->findAll($this->uid());
-		return new DataResponse(array_map(fn ($e) => $e->jsonSerialize(), $entities));
+		return new DataResponse(array_values(array_map(fn ($e) => $e->jsonSerialize(), $entities)));
 	}
 
-	/** @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND, array<string, mixed>, array{}> */
+	/**
+	 * Get a subprocessor by ID
+	 *
+	 * @param int $id Subprocessor ID
+	 * @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND, array<string, mixed>, array{}>
+	 *
+	 * 200: Subprocessor returned
+	 * 404: Subprocessor not found
+	 */
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'GET', url: '/subprocessors/{id}')]
 	public function show(int $id): DataResponse {
@@ -48,7 +65,22 @@ class SubprocessorController extends OCSController {
 		}
 	}
 
-	/** @return DataResponse<Http::STATUS_CREATED|Http::STATUS_UNPROCESSABLE_ENTITY, array<string, mixed>, array{}> */
+	/**
+	 * Create a new subprocessor
+	 *
+	 * @param string $name Subprocessor name
+	 * @param ?string $purpose Purpose of processing
+	 * @param ?string $dataCategories Categories of personal data
+	 * @param ?string $location Location or legal seat of the provider
+	 * @param bool $usParent Whether the provider has a US parent company (CLOUD Act risk)
+	 * @param ?int $dpaFileId Nextcloud file ID of the attached DPA document
+	 * @param ?string $dpaFileName File name of the attached DPA document
+	 * @param ?string $reviewDate Next contract review date (Y-m-d)
+	 * @return DataResponse<Http::STATUS_CREATED|Http::STATUS_UNPROCESSABLE_ENTITY, array<string, mixed>, array{}>
+	 *
+	 * 201: Subprocessor created
+	 * 422: Validation error
+	 */
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'POST', url: '/subprocessors')]
 	public function create(
@@ -72,7 +104,24 @@ class SubprocessorController extends OCSController {
 		}
 	}
 
-	/** @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND|Http::STATUS_UNPROCESSABLE_ENTITY, array<string, mixed>, array{}> */
+	/**
+	 * Update an existing subprocessor
+	 *
+	 * @param int $id Subprocessor ID
+	 * @param string $name Subprocessor name
+	 * @param ?string $purpose Purpose of processing
+	 * @param ?string $dataCategories Categories of personal data
+	 * @param ?string $location Location or legal seat of the provider
+	 * @param bool $usParent Whether the provider has a US parent company (CLOUD Act risk)
+	 * @param ?int $dpaFileId Nextcloud file ID of the attached DPA document
+	 * @param ?string $dpaFileName File name of the attached DPA document
+	 * @param ?string $reviewDate Next contract review date (Y-m-d)
+	 * @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND|Http::STATUS_UNPROCESSABLE_ENTITY, array<string, mixed>, array{}>
+	 *
+	 * 200: Subprocessor updated
+	 * 404: Subprocessor not found
+	 * 422: Validation error
+	 */
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'PUT', url: '/subprocessors/{id}')]
 	public function update(
@@ -99,7 +148,15 @@ class SubprocessorController extends OCSController {
 		}
 	}
 
-	/** @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND, array{}, array{}> */
+	/**
+	 * Delete a subprocessor
+	 *
+	 * @param int $id Subprocessor ID
+	 * @return DataResponse<Http::STATUS_OK|Http::STATUS_NOT_FOUND, array{}, array{}>
+	 *
+	 * 200: Subprocessor deleted
+	 * 404: Subprocessor not found
+	 */
 	#[NoAdminRequired]
 	#[ApiRoute(verb: 'DELETE', url: '/subprocessors/{id}')]
 	public function destroy(int $id): DataResponse {

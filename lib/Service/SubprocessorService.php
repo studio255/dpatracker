@@ -10,6 +10,7 @@ use OCA\DpaTracker\Db\Subprocessor;
 use OCA\DpaTracker\Db\SubprocessorMapper;
 
 class SubprocessorService {
+	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct(
 		private SubprocessorMapper $mapper,
 	) {

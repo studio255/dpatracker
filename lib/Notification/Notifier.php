@@ -12,6 +12,7 @@ use OCP\Notification\INotifier;
 use OCP\Notification\UnknownNotificationException;
 
 class Notifier implements INotifier {
+	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct(
 		private IFactory $l10nFactory,
 		private IURLGenerator $urlGenerator,
@@ -35,8 +36,8 @@ class Notifier implements INotifier {
 
 		if ($notification->getSubject() === 'review_due') {
 			$params = $notification->getSubjectParameters();
-			$count = (int) ($params['count'] ?? 1);
-			$names = (string) ($params['names'] ?? '');
+			$count = (int)($params['count'] ?? 1);
+			$names = (string)($params['names'] ?? '');
 
 			$subject = $l->n(
 				'%n subprocessor: review date due',

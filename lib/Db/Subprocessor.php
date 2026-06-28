@@ -8,6 +8,7 @@ use JsonSerializable;
 use OCP\AppFramework\Db\Entity;
 
 /**
+ * @psalm-suppress PropertyNotSetInConstructor
  * @method string getUserId()
  * @method void setUserId(string $userId)
  * @method string getName()
@@ -41,19 +42,20 @@ class Subprocessor extends Entity implements JsonSerializable {
 	protected ?string $reviewDate = null;
 	protected ?string $createdAt = null;
 
+	/** @return array<string, mixed> */
 	public function jsonSerialize(): array {
 		return [
-			'id'             => $this->id,
-			'userId'         => $this->userId,
-			'name'           => $this->name,
-			'purpose'        => $this->purpose,
+			'id' => $this->id,
+			'userId' => $this->userId,
+			'name' => $this->name,
+			'purpose' => $this->purpose,
 			'dataCategories' => $this->dataCategories,
-			'location'       => $this->location,
-			'usParent'       => $this->usParent,
-			'dpaFileId'      => $this->dpaFileId,
-			'dpaFileName'    => $this->dpaFileName,
-			'reviewDate'     => $this->reviewDate,
-			'createdAt'      => $this->createdAt,
+			'location' => $this->location,
+			'usParent' => $this->usParent,
+			'dpaFileId' => $this->dpaFileId,
+			'dpaFileName' => $this->dpaFileName,
+			'reviewDate' => $this->reviewDate,
+			'createdAt' => $this->createdAt,
 		];
 	}
 }

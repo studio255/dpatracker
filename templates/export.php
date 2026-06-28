@@ -194,7 +194,8 @@ tbody td {
 			</tr>
 		</thead>
 		<tbody>
-		<?php $i = 1; foreach ($subprocessors as $sp): ?>
+		<?php $i = 1;
+		foreach ($subprocessors as $sp): ?>
 			<tr>
 				<td><?php p($i++); ?></td>
 				<td class="td-name"><?php p($sp->getName()); ?></td>
@@ -223,10 +224,8 @@ tbody td {
 	</div>
 </div>
 
-<script nonce="<?php p($_['nonce'] ?? ''); ?>">
-document.getElementById('btn-print').addEventListener('click', function() {
-	window.print();
-});
+<script>
+document.getElementById('btn-print')?.addEventListener('click', function() { window.print(); });
 </script>
 </body>
 </html>
