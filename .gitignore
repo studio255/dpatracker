@@ -8,6 +8,7 @@
 /tests/.phpunit.cache
 
 /node_modules/
-/js/
+/js/*.mjs
+/js/*.mjs.*
 /css/
 /CLAUDE.md
