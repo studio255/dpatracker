@@ -9,9 +9,10 @@ use OCP\DB\ISchemaWrapper;
 use OCP\Migration\IOutput;
 use OCP\Migration\SimpleMigrationStep;
 
+/** @psalm-suppress UnusedClass */
 class Version1000Date20260608120000 extends SimpleMigrationStep {
+	/** @psalm-suppress UndefinedDocblockClass */
 	public function changeSchema(IOutput $output, Closure $schemaClosure, array $options): ?ISchemaWrapper {
-		/** @var ISchemaWrapper $schema */
 		$schema = $schemaClosure();
 		$table = $schema->getTable('dpatracker_subproc');
 

@@ -12,6 +12,7 @@ use OCP\BackgroundJob\TimedJob;
 use OCP\Notification\IManager as INotificationManager;
 
 class ReviewDateReminder extends TimedJob {
+	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct(
 		ITimeFactory $time,
 		private SubprocessorService $service,

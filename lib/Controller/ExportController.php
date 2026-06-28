@@ -12,16 +12,15 @@ use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\Attribute\OpenAPI;
 use OCP\AppFramework\Http\TemplateResponse;
-use OC\Security\CSP\ContentSecurityPolicyNonceManager;
 use OCP\IRequest;
 use OCP\IUserSession;
 
+/** @psalm-suppress UnusedClass */
 class ExportController extends Controller {
 	public function __construct(
 		IRequest $request,
 		private SubprocessorService $service,
 		private IUserSession $userSession,
-		private ContentSecurityPolicyNonceManager $nonceManager,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -39,9 +38,8 @@ class ExportController extends Controller {
 			'export',
 			[
 				'subprocessors' => $subprocessors,
-				'exportDate'    => date('d.m.Y'),
-				'userId'        => $userId,
-				'nonce'         => $this->nonceManager->getNonce(),
+				'exportDate' => date('d.m.Y'),
+				'userId' => $userId,
 			],
 			TemplateResponse::RENDER_AS_BLANK,
 		);

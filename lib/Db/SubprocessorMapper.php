@@ -13,6 +13,7 @@ use OCP\IDBConnection;
  * @template-extends QBMapper<Subprocessor>
  */
 class SubprocessorMapper extends QBMapper {
+	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct(IDBConnection $db) {
 		parent::__construct($db, 'dpatracker_subproc', Subprocessor::class);
 	}
