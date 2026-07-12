@@ -73,14 +73,12 @@ async function resolveFileId(path: string): Promise<number | null> {
 
 function openFilePicker() {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	;(window as any).OC.dialogs.filepicker(
+	(window as any).OC.dialogs.filepicker(
 		t('dpatracker', 'Select DPA document'),
 		async (path: string) => {
-			console.log('[dpatracker] filepicker callback called, path:', path, typeof path)
 			if (!path || typeof path !== 'string') return
 			dpaFileName.value = path.split('/').pop() ?? path
 			dpaFileId.value = await resolveFileId(path)
-			console.log('[dpatracker] dpaFileName set to:', dpaFileName.value)
 		},
 		false,
 		[],
@@ -192,7 +190,10 @@ async function submit() {
 
 		<template #actions>
 			<NcButton :disabled="saving" :text="t('dpatracker', 'Cancel')" @click="emit('update:open', false)" />
-			<NcButton type="primary" :disabled="saving" :text="saving ? t('dpatracker', 'Saving…') : t('dpatracker', 'Save')" @click="submit" />
+			<NcButton type="primary"
+				:disabled="saving"
+				:text="saving ? t('dpatracker', 'Saving…') : t('dpatracker', 'Save')"
+				@click="submit" />
 		</template>
 	</NcDialog>
 </template>

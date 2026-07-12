@@ -42,7 +42,7 @@ class ExportController extends Controller {
 				'subprocessors' => $subprocessors,
 				'exportDate' => date('d.m.Y'),
 				'userId' => $userId,
-				'scriptUrl' => $this->urlGenerator->linkTo('dpatracker', 'js/dpatracker-export.js'),
+				'scriptUrl' => $this->urlGenerator->linkTo('dpatracker', 'js/dpatracker-export.mjs'),
 			],
 			TemplateResponse::RENDER_AS_BLANK,
 		);

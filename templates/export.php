@@ -224,6 +224,6 @@ tbody td {
 	</div>
 </div>
 
-<?php emit_script_tag($_['scriptUrl']); ?>
+<?php emit_script_tag($_['scriptUrl'], '', 'module'); ?>
 </body>
 </html>

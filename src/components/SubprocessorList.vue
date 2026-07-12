@@ -53,8 +53,12 @@ const emit = defineEmits<{
 			</thead>
 			<tbody>
 				<tr v-for="item in items" :key="item.id">
-					<td :class="$style.name">{{ item.name }}</td>
-					<td :class="$style.ellipsis">{{ item.purpose ?? '—' }}</td>
+					<td :class="$style.name">
+						{{ item.name }}
+					</td>
+					<td :class="$style.ellipsis">
+						{{ item.purpose ?? '—' }}
+					</td>
 					<td>{{ item.location ?? '—' }}</td>
 					<td>
 						<span :class="item.usParent ? $style.riskYes : $style.riskNo">
